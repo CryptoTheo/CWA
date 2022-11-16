@@ -7,6 +7,30 @@ https://kivymd.readthedocs.io/en/latest/api/kivymd/tools/patterns/create_project
 To run the application in hot boot mode, execute the command in the console:
 DEBUG=1 python main.py
 """
+import certifi
+import dns.resolver
+import mongoengine as mongo
+from kivy.uix.anchorlayout import AnchorLayout
+# """
+# The entry point to the application.
+#
+# The application uses the MVC template. Adhering to the principles of clean
+# architecture means ensuring that your application is easy to test, maintain,
+# and modernize.
+#
+# You can read more about this template at the links below:
+#
+# https://github.com/HeaTTheatR/LoginAppMVC
+# https://en.wikipedia.org/wiki/Model–view–controller
+# """
+# #
+from kivymd.app import MDApp
+from kivymd.uix.card import MDCard
+from kivymd.uix.label import MDLabel
+from kivymd.uix.screenmanager import MDScreenManager
+
+from View.screens import screens
+
 # import importlib
 # import os
 #
@@ -93,32 +117,8 @@ DEBUG=1 python main.py
 #
 #
 # TheCWA().run()
-
 # After you finish the project, remove the above code and uncomment the below
 # code to test the application normally without hot reloading.
-
-# """
-# The entry point to the application.
-#
-# The application uses the MVC template. Adhering to the principles of clean
-# architecture means ensuring that your application is easy to test, maintain,
-# and modernize.
-#
-# You can read more about this template at the links below:
-#
-# https://github.com/HeaTTheatR/LoginAppMVC
-# https://en.wikipedia.org/wiki/Model–view–controller
-# """
-# #
-from kivymd.app import MDApp
-from kivymd.uix.screenmanager import MDScreenManager
-
-from View.screens import screens
-
-import certifi
-import mongoengine as mongo
-
-import dns.resolver
 
 # TODO: You may know an easier way to get the size of a computer display.
 # Change the values of the application window size as you need.
@@ -136,8 +136,37 @@ try:
                   password=password,
                   host=host_name,
                   tlsCAFile=certifi.where())
+    connection = True
 except Exception as e:
     print(e)
+    connection = False
+
+
+    class Example(MDApp):
+
+        def build(self):
+            self.theme_cls.theme_style = "Dark"
+            self.theme_cls.primary_palette = "Red"
+
+            layout = AnchorLayout()
+            self.card = MDCard(
+                size_hint=(0.7, 0.6),
+                md_bg_color=self.theme_cls.bg_dark,
+                orientation='vertical'
+            )
+            label = MDLabel(
+                text='Please connect to the internet and restart application',
+                halign='center'
+            )
+            # error = MDLabel(
+            #     text=e
+            # )
+
+            self.card.add_widget(label)
+            # self.card.add_widget(error)
+            layout.add_widget(self.card)
+
+            return layout
 
 
 class TheCWA(MDApp):
@@ -172,4 +201,7 @@ class TheCWA(MDApp):
 
 
 if __name__ == '__main__':
-    TheCWA().run()
+    if connection == True:
+        TheCWA().run()
+    else:
+        Example().run()
