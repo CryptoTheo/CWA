@@ -1,0 +1,219 @@
+<MyTableLabel@MDLabel>
+    font_style: "Caption"
+    font_size: '11dp'
+    size_hint: None, None
+    adaptive_height: True
+
+<ResultsTable>
+    column_data:[]
+    row_data:[]
+
+<EventScreenView>
+    name: 'event screen'
+    md_bg_color: app.theme_cls.bg_darkest
+
+    MDBoxLayout:
+        orientation:'vertical'
+
+        MDTopAppBar:
+            title: root.page_name
+
+            left_action_items:[['chevron-left', lambda x:root.controller.on_chevron_back()]]
+            right_action_items:
+                [
+                ['magnify', lambda x:root.controller.search_button()],
+                ['account', lambda x:root.controller.user_icon()],
+                ]
+
+        ScrollView:
+            md_bg_color: app.theme_cls.bg_light
+            do_scroll_x: False
+            do_scroll_y: True
+
+
+            MDGridLayout:
+                size_hint_y: None
+                cols: 1
+                padding: '12dp'
+                spacing: '12dp'
+                height: self.minimum_height
+
+                MDCard:
+                    size_hint: 1, None
+                    md_bg_color: app.theme_cls.bg_normal
+                    height: '300dp'
+                    orientation: 'vertical'
+                    padding: '12dp'
+                    elevation: 3
+                    radius: '12dp'
+
+                    MDLabel:
+                        text: 'Currently Riding:'
+                        font_style: 'H5'
+                        adaptive_height: True
+
+
+                    MDFloatLayout:
+
+                        MDCarousel:
+                            id: on_water
+                            loop: True
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_current_slide: root.current_slide(self.current_slide.rider_id)
+
+                        MDIconButton:
+                            icon: 'chevron-double-left'
+                            pos_hint: {'center_x': .1, 'center_y': .5}
+                            on_release: root.ids.on_water.load_previous()
+
+                        MDIconButton:
+                            icon: 'chevron-double-right'
+                            pos_hint: {'center_x': .9, 'center_y': .5}
+                            on_release: root.ids.on_water.load_next(mode='next')
+
+                    MDBoxLayout:
+                        md_bg_color: app.theme_cls.bg_darkest
+                        padding: '4dp'
+                        cols: 2
+                        spacing: '12dp'
+
+                        MDCard:
+                            size_hint: .65, 1
+                            orientation: "vertical"
+                            padding: '6dp'
+                            md_bg_color:
+
+                            MDLabel:
+                                id: rider_name
+                                text: root.rider_name
+                                size_hint: 1, None
+                                text: root.rider_name
+                                font_style: 'Overline'
+                                font_size: '16dp'
+                                pos_hint: {'x': 0.05, 'center_y': .9}
+                            MDLabel:
+                                text: root.average_division
+                                font_style: 'Caption'
+                                bold: False
+                                italic: True
+                                pos_hint: {'x': 0.05, 'center_y': .5}
+                            MDLabel:
+                                text: root.average_score
+                                pos_hint: {'x': .05, 'center_y': .2}
+                        MDGridLayout:
+                            cols: 3
+                            spacing: '6do'
+
+                            MyTableLabel:
+                                text: root.latest_section
+
+                            MyTableLabel:
+                                text: 'AVG'
+
+                            MyTableLabel:
+                                text: 'NEW'
+
+                            MyTableLabel:
+                                text: 'Execution:'
+
+                            MyTableLabel:
+                                text: root.average_execution
+
+                            MyTableLabel:
+                                text: root.latest_execution
+
+                            MyTableLabel:
+                                text: 'Creativity'
+
+                            MyTableLabel:
+                                text: root.average_creativity
+
+                            MyTableLabel:
+                                text: root.latest_creativity
+
+                            MyTableLabel:
+                                text: 'Difficulty'
+
+                            MyTableLabel:
+                                text: root.average_difficulty
+
+                            MyTableLabel:
+                                text: root.latest_difficulty
+
+
+
+
+                MDCard:
+                    size_hint: 1, None
+                    orientation: 'vertical'
+                    height: '400dp'
+                    elevation: 3
+                    radius: '12dp'
+
+                    MDCard:
+                        padding: '12dp'
+                        spacing: '12dp'
+                        size_hint: 1, None
+                        height: '60dp'
+                        radius: '12dp', '12dp', '0dp', '0dp'
+
+                        MDLabel:
+                            text: 'Live Results:'
+                            font_style: 'H5'
+
+
+                    MDTabs:
+                        background_color: app.theme_cls.bg_light
+                        on_tab_switch: root.on_tab_switch(*args)
+                        text_color_normal: 'black'
+                        text_color_active: app.theme_cls.primary_palette.lower()
+                        indicator_color: app.theme_cls.primary_palette.lower()
+
+                        Tab:
+                            active_contest: root.contest_id
+                            md_bg_color: app.theme_cls.bg_darkest
+                            title: 'Overall'
+                            ScrollView:
+                                do_scroll_x: False
+                                MDList:
+                                    id: overall_list
+                                    padding: '24dp', '12dp', '24dp', '12dp'
+                                    spacing: '12dp'
+
+
+                        Tab:
+                            active_contest: root.contest_id
+                            md_bg_color: app.theme_cls.bg_darkest
+                            title: 'Kickers'
+                            ScrollView:
+                                do_scroll_x: False
+                                MDList:
+                                    id: kicker_list
+                                    padding: '24dp'
+                                    spacing: '12dp'
+
+                        Tab:
+                            active_contest: root.contest_id
+                            md_bg_color: app.theme_cls.bg_darkest
+                            title: 'Rails'
+                            ScrollView:
+                                do_scroll_x: False
+                                MDList:
+                                    id: rail_list
+                                    padding: '24dp'
+                                    spacing: '12dp'
+
+                        Tab:
+                            active_contest: root.contest_id
+                            md_bg_color: app.theme_cls.bg_darkest
+                            title: 'AirTricks'
+                            ScrollView:
+                                do_scroll_x: False
+                                MDList:
+                                    id: airtrick_list
+                                    cols: 1
+                                    padding: '24dp'
+                                    spacing: '12dp'
+
+
+

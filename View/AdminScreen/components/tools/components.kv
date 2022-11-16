@@ -1,0 +1,37 @@
+<ListItemWithCheckbox>:
+    size_hint: 1, None
+    height: "64dp"
+    padding: "2dp"
+    radius: 12
+#    divider: 'Inset'
+
+    FitImage:
+        source: "assets/images/default_profile.png"
+        radius: root.radius
+        size_hint_x: None
+        width: root.height
+        elevation: dp(2)
+
+    MDLabel:
+        id: label
+        text: root.rider_name
+        font_style: "H6"
+        bold: True
+        width: root.width*.75
+        pos_hint:  {'center_x': .5,'center_y': .5}
+
+    MDCard:
+        id: colour
+        md_bg_color: root.bib_color
+        on_release: root.select_bib_color()
+
+        MDLabel:
+            id: color_label
+            halign: 'center'
+            text: root.bib_color_text
+
+    RightCheckbox:
+        id: check
+        size: dp(48), dp(48)
+        active: root.active_check
+        on_release: root.on_checkbox_active(root.type)

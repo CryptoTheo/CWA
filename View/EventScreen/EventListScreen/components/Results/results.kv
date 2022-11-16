@@ -1,0 +1,213 @@
+<Result@MDCard>
+    orientation: 'vertical'
+    section_name: 'Section'
+    section_score: 'Score'
+
+    MDLabel:
+        text: root.section_name
+        font_style: 'Caption'
+        font_size: '8dp'
+        halign: 'center'
+        bold: False
+        italic: True
+
+    MDLabel:
+        id: score
+        text: root.section_score
+        halign: 'center'
+        font_style: 'Button'
+        font_size: '12dp'
+
+<ResultCard>:
+    size_hint: 1,None
+    height: '60dp'
+    padding: '12dp'
+    elevation: 2
+    shadow_offset: 0, 3
+
+
+    MDLabel:
+        text: root.place
+        halign: 'center'
+        adaptive_width: True
+        font_style: 'H6'
+        size_hint: .2, 1
+
+    MDSeparator:
+        size_hint: None,1
+        width: '1dp'
+
+
+    MDRelativeLayout:
+
+
+        MDLabel:
+            id: rider
+            size_hint: 1, None
+            text: root.rider_name
+            font_style: 'Overline'
+            font_size: '16dp'
+            halign: 'center'
+            pos_hint: {'center_x':.5, 'center_y':.5}
+
+        MDLabel:
+            id: division
+            text: root.division
+            font_style: 'Caption'
+            bold: False
+            italic: True
+            halign: 'center'
+            pos_hint: {'center_x':.5, 'center_y':.1}
+
+    MDRelativeLayout:
+        size_hint: .3, 1
+        MDLabel:
+            text: root.score
+            font_style: 'H6'
+            bold: True
+            adaptive_height: True
+            pos_hint: {'center_x':.5, 'center_y':.5}
+
+        MDLabel:
+            text: 'Overall Score:'
+            font_style: 'Caption'
+            font_size: '8dp'
+            bold: False
+            adaptive_height:True
+            italic: True
+            pos_hint: {'center_x':.5, 'center_y':.1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#TODO Decide top or bottom
+#<Result@MDCard>
+#    orientation: 'vertical'
+#    section_name: 'Section'
+#    section_score: 'Score'
+#
+#    MDLabel:
+#        text: root.section_name
+#        font_style: 'Caption'
+#        font_size: '8dp'
+#        halign: 'center'
+#        bold: False
+#        italic: True
+#
+#    MDLabel:
+#        id: score
+#        text: root.section_score
+#        halign: 'center'
+#        font_style: 'Button'
+#        font_size: '12dp'
+#
+#
+#<ResultCard>:
+#    size_hint: 1,None
+#    height: '60dp'
+#    padding: '12dp'
+#    elevation: 2
+#    shadow_offset: 0, 3
+#
+#
+#    MDLabel:
+#        text: root.place
+#        halign: 'center'
+#        adaptive_width: True
+#        font_style: 'H6'
+#
+#    MDSeparator:
+#        size_hint: None,1
+#        width: '1dp'
+#
+#
+#    MDBoxLayout:
+#        orientation: 'vertical'
+#
+#        MDLabel:
+#            id: rider
+#            size_hint: 1, None
+#            text: root.rider_name
+#            font_style: 'Overline'
+#            font_size: '16dp'
+#            adaptive_size: True
+#            pos_hint: {'x': .1, 'center_y': .5}
+#
+#
+#
+#        MDRelativeLayout:
+#            MDLabel:
+#                text: root.score
+#                font_style: 'H6'
+#                bold: True
+#                halign: 'left'
+#                adaptive_size: True
+#                pos_hint: {'x': .4, 'center_y': .3}
+#
+#            MDLabel:
+#                text: 'Overall:'
+#                font_style: 'Caption'
+#                font_size: '8dp'
+#                adaptive_size: True
+#                bold: False
+#                italic: True
+#                pos_hint: {'x': .1, 'center_y': .5}
+#
+#    MDBoxLayout:
+#        orientation: 'vertical'
+#        MDLabel:
+#            id: division
+#            text: root.division
+#            font_style: 'Subtitle2'
+#            bold: False
+#            adaptive_height: True
+#            halign: 'center'
+#            pos_hint: {'center_x': .5, 'center_y': .3}
+#
+#
+#
+#
+#        MDGridLayout:
+#            rows: 1
+#
+#    #        Result:
+#    #            section_name: 'Total:'
+#    #            section_score: root.score
+#
+#            Result:
+#                section_name: 'Execution:'
+#                section_score: root.execution
+#
+#            Result:
+#                section_name: 'Creativity:'
+#                section_score: root.creative
+#
+#            Result:
+#                section_name: 'Difficulty:'
+#                section_score: root.difficulty
+#
+#
+#
+#
+
+
+
+
+
+
+
+
+
+

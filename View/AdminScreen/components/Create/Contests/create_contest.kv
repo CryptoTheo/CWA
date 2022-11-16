@@ -1,0 +1,128 @@
+<ContestsAdmin>
+    size_hint: 1, None
+    height: '600dp'
+    padding: '6dp'
+
+    MDRelativeLayout:
+
+        MDLabel:
+            text: 'Create a Contest'
+#            md_bg_color: 'blue'
+            font_style: 'H4'
+            halign: 'center'
+            adaptive_height: True
+            pos_hint: {'center_y': .95}
+
+        MDTextField:
+            id: event_name
+            hint_text: 'Contest Name'
+#                helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint:{'x': .06, 'center_y': .85}
+#                required: True
+
+        MDTextField:
+            id: location
+            hint_text: 'Host Park'
+#                helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint:{'right': .94, 'center_y': .85}
+#                required: True
+
+        MDTextField:
+            id: format
+            hint_text: 'Format'
+#                helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint:{'x': .06, 'center_y': .35}
+#                required: True
+
+        MDTextFieldRect:
+            id: description
+            hint_text: 'Description'
+            helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/1.18
+            height: '150dp'
+            pos_hint:{'center_x': .5, 'center_y': .6}
+            validator: 'email'
+
+        MDRoundFlatIconButton:
+            id: time
+            text: "Start Time"
+            icon: 'clock'
+            width: root.width/2.6
+            pos_hint:{'right': .94, 'center_y': .76}
+            on_release: root.show_time_picker()
+#                required: True
+
+        MDRoundFlatIconButton:
+            id: date
+            text: "Event Date"
+            icon: 'calendar'
+#                size_hint: None, None
+            width: root.width/2.6
+            pos_hint: {'x': .06, 'center_y': .76}
+            on_release: root.show_date_picker()
+
+        MDTextField:
+            id: image_link
+            hint_text: 'Image URL:'
+#                helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/1.18
+            pos_hint:{'center_x': .5, 'center_y': .45}
+            on_text_validate: root.show_image()
+
+        MDRoundFlatIconButton:
+            text: 'Submit'
+            icon: 'calendar-plus'
+            pos_hint: {'right': .94, 'y': 0.04}
+            on_release: root.add_contest()
+
+#            AsyncImage:
+#                id: profile_image
+#                size_hint: 1, None
+#                height: '200dp'
+#                pos_hint: {'center_x': .5, 'y': .1}
+#                source: ''
+
+
+
+#class Contest(db.Document, Database):
+#    date_created = db.DateTimeField(default=datetime.today)
+#    name = db.StringField(required=True)
+#    date = db.StringField()
+##    datetime = db.DateField()
+#    location = db.StringField()
+#    description = db.StringField()
+#    live = db.BooleanField(default=False)
+#    completed = db.BooleanField(default=False)
+#    format = db.StringField()
+#    divisions = db.ListField()
+#    heats = db.BooleanField()
+#    lcq = db.BooleanField()
+#    multi_factor_judging = db.BooleanField()
+#    sections = db.BooleanField()
+#    bibs = db.BooleanField()
+#    timer = db.BooleanField()
+#    heats_matter = db.BooleanField()
+#    heat_advance = db.IntField()
+#    riders_per_heat = db.IntField()
+#    number_factors = db.IntField()
+#    factor_names = db.ListField()
+#    factor_weights = db.ListField()
+#    section_names = db.ListField()
+#    section_weights = db.ListField()
+#    bibs_colors = db.ListField()
+#    default_time = db.FloatField()
+#    lcq_advance = db.IntField()
+#

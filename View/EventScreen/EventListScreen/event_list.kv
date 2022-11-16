@@ -1,0 +1,28 @@
+<EventListScreenView>
+    name: 'event list screen'
+    md_bg_color: 'white'
+
+    MDBoxLayout:
+        orientation:'vertical'
+
+        MDTopAppBar:
+            title: root.page_name
+
+            left_action_items:[['chevron-left', lambda x:root.controller.on_chevron_back()]]
+            right_action_items:
+                [
+                ['magnify', lambda x:root.controller.search_button()],
+                ['account', lambda x:root.controller.user_icon()],
+                ]
+
+        ScrollView:
+
+
+            MDList:
+                id: events_scroll
+                padding: '12dp'
+                spacing: '12dp'
+
+
+
+

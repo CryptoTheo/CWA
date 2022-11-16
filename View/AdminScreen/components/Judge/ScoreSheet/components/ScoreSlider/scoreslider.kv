@@ -1,0 +1,25 @@
+<ScoreSlider>:
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: '6dp'
+
+        MDLabel:
+            id: score_value
+            text: root.label
+            theme_text_color: 'Secondary'
+            halign: 'center'
+
+        MDSlider:
+            id: slider
+            value: root.slider_value
+            step: .01
+            min: 0
+            max: 100
+            hint: False
+            color: root.bib_color
+            on_value: root.move_slider(*args)
+            pos_hint: {'center_y': .5}
+
+
+

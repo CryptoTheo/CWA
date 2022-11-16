@@ -1,0 +1,52 @@
+<MyCheck@MDCheckbox>:
+    group: 'group'
+    size_hint: None, None
+    size: dp(38), dp(36)
+
+<RegisterRiders>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDBoxLayout:
+            size_hint: 1,.1
+            pos_hint: {'center_x': .5, 'top': 1}
+
+            SelectContest
+                MDTextField:
+                    id: menu_
+                    pos_hint: {'x': .05, 'center_y': .4}
+                    size_hint_x: None
+                    width: "200dp"
+                    hint_text: "Select a Contest"
+                    on_focus: if self.focus: root.start_search()
+
+            MDRelativeLayout:
+                MyCheck:
+                    id: all
+                    active: True
+                    pos_hint: {'center_x': .2, 'center_y': .66}
+                MDLabel:
+                    text: 'All Riders'
+                    pos_hint: {'x': .3, 'center_y': .66}
+                MyCheck:
+                    id: registered
+                    pos_hint: {'center_x': .2, 'center_y': .33}
+                MDLabel:
+                    text: 'Registered'
+                    pos_hint: {'x': .3, 'center_y': .33}
+        MDLabel:
+            id: header
+            text: "Register Riders"
+            adaptive_height: True
+
+        ScrollView:
+            id: scroll
+
+            MDList:
+                id: list
+
+
+
+
+
+
+

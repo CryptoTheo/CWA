@@ -1,0 +1,120 @@
+<ScoreCard>
+    orientation: 'vertical'
+    size_hint: 1, 1
+    pos_hint: {'center_x': .5, 'center_y': .5}
+
+    MDBoxLayout:
+        size_hint: 1, .4
+        orientation: 'vertical'
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, .2
+            MDLabel:
+                text: root.rider_name
+                font_style: 'Overline'
+                font_size: '18dp'
+                md_bg_color: app.theme_cls.bg_dark
+
+            MDLabel:
+                text: root.rider_stance
+                font_style: 'Caption'
+                md_bg_color: app.theme_cls.bg_dark
+
+        MDRelativeLayout:
+            size_hint: 1, .1
+
+            MDLabel:
+                text: 'Kicker'
+                pos_hint: {'center_x': .25, 'center_y': .7}
+                adaptive_size: True
+            Check:
+                id: kicker
+                pos_hint: {'center_x': .25, 'center_y': .3}
+            MDLabel:
+                text: 'Rail'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+                adaptive_size: True
+            Check:
+                id: rail
+                pos_hint: {'center_x': .5, 'center_y': .3}
+            MDLabel:
+                text: 'Airtrick'
+                pos_hint: {'center_x': .75, 'center_y': .7}
+                adaptive_size: True
+            Check:
+                id: air
+                pos_hint: {'center_x': .75, 'center_y': .3}
+
+#        FitImage:
+#            source: 'assets/images/default_profile.png'
+#            size_hint: None,None
+#            size: '150dp', '150dp'
+#            radius: '24dp'
+#            pos_hint: {'center_x': .75, 'center_y': .85}
+
+#        MDLabel:
+#            text: root.rider_age
+#            font_style: 'Caption'
+#            size_hint: None, None
+#            size: root.width/1.8, root.height/6
+#            theme_text_color: 'Primary'
+#            pos_hint:{'x': .3, 'center_y': .85}
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, None
+        height: '220dp'
+        pos_hint: {'center_x': .5,"center_y": .5}
+
+        padding: '12dp'
+
+        ScoreSlider:
+            id: division
+            label: 'Division'
+            div: True
+            slider_value: 0
+            bib_color: root.bib_color
+#                division: self.value
+        ScoreSlider:
+            id: creativity
+            label: 'Creativity'
+            div: False
+            bib_color: root.bib_color
+#                creativity: self.value
+        ScoreSlider:
+            id: difficulty
+            label: 'Difficulty'
+            div: False
+            bib_color: root.bib_color
+#                difficulty: self.value
+        ScoreSlider:
+            id: execution
+            label: 'Execution'
+            div: False
+            bib_color: root.bib_color
+#                execution: self.value
+
+    MDRelativeLayout:
+        id: buttons
+        size_hint: 1, .2
+        md_bg_color: app.theme_cls.bg_dark
+
+        MDRoundFlatIconButton:
+            text: "Fell"
+            icon: 'skull'
+            text_color: 'red'
+            icon_color: 'red'
+            pos_hint: {'x': .05, 'y': .03}
+            on_release: root.rider_fell()
+
+        MDRoundFlatIconButton:
+            text: 'Landed'
+            icon: 'plus'
+            pos_hint: {'right': .95, 'y': .03}
+            on_release: root.submit_scores()
+#
+
+
+
+

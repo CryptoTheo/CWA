@@ -1,0 +1,57 @@
+<MainScreenView>
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        HeaderBar:
+            title: root.page_name
+
+            left_action_items:[['menu', lambda x:root.controller.navigation_draw()]]
+            right_action_items:
+                [
+                ['magnify', lambda x:root.controller.search_button()],
+                ['account', lambda x:root.controller.user_icon()],
+                ]
+
+        MDGridLayout:
+            cols: 2
+            padding: '24dp','24dp','24dp','24dp'
+            spacing: '12dp'
+
+            NavCard:
+                id: events
+                label: 'Events'
+                screen: 'event list screen'
+                image: 'assets/images/287825809_3156336204694495_8973884580806198578_n.jpeg'
+
+            NavCard:
+                id: riders
+                label: 'Riders'
+                screen: 'rider screen'
+                image: 'assets/images/286168187_3150148615313254_2613317989854337260_n.jpeg'
+
+            NavCard:
+                id: sponsors
+                label: 'Sponsors'
+                screen: 'sponsor screen'
+                image: 'assets/images/nationals28of91-1080x675.png'
+
+            NavCard:
+                id: parks
+                label: 'Cable Parks'
+                image: 'assets/images/cablepark.jpeg'
+                screen: 'park screen'
+
+            NavCard:
+                id: about
+                label: 'About Us'
+                image: 'assets/images/Screen Shot 2022-07-22 at 5.24.32 PM.png'
+                screen: 'about us'
+
+            NavCard:
+                id: donate
+                label: 'Donate'
+                image: 'assets/images/donate.jpeg'
+                screen: 'donate'
+
+

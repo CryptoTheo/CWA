@@ -1,0 +1,82 @@
+<EventCard>
+    id: root.event_uid
+    orientation: "vertical"
+    size_hint: 1, None
+    height: '320dp'
+    spacing: 18
+    radius: '24dp'
+
+
+
+    FitImage:
+        source: 'assets/images/unitpark.jpeg'
+        size_hint: 1, .5
+        radius: '24dp', '24dp', '4dp', '4dp'
+
+    RelativeLayout:
+        id: card_info
+
+
+        MDLabel:
+            id: event_name
+            text: root.event_name
+            bold: True
+            font_size: '24dp'
+            adaptive_size: True
+            pos_hint: {'x': .02, 'center_y': .95}
+
+        MDLabel:
+            id: event_location
+            text: root.event_location
+            adaptive_size: True
+            font_style: 'Subtitle2'
+            pos_hint: {'x': .02, 'center_y': .8}
+
+
+        MDLabel:
+            id: event_date
+            text: root.event_date
+#            bold: True
+            adaptive_size: True
+            font_style: 'Subtitle1'
+            pos_hint: {'right': .98, 'center_y': .95}
+
+        MDLabel:
+            id: event_format
+            text: root.event_format + ' Format'
+            adaptive_size: True
+            font_style: 'Subtitle1'
+            pos_hint: {'right': .98, 'center_y': .8}
+
+        MDLabel:
+            id: event_description
+            text: root.event_description
+            font_style: 'Caption'
+            adaptive_height: True
+            size_hint_x: .95
+            pos_hint: {'x': .02,'top': .6}
+
+        MDRoundFlatIconButton:
+            text: "View Event"
+            pos_hint: {'right': .95, 'center_y': .15}
+            on_release:
+                app.active_contest = root.event_uid
+                app.manager_screens.transition.direction = 'left'
+                app.manager_screens.current = 'event screen'
+
+
+#        MDRoundFlatButton:
+#            text: 'Register'
+#            #                md_bg_color: 'red'
+#            radius: '24dp'
+#            pos_hint: {'center_x': .5, 'center_y': .15}
+#            #                pos_hint: {'center_x': .8, 'center_y': .2}
+#            on_release:
+#                app.manager_screens.current = 'event screen'
+##                app.set_active_contest(root.event_uid)
+
+
+
+
+#
+

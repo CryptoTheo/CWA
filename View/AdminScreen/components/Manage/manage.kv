@@ -1,0 +1,28 @@
+
+<ManageTab>
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        SelectContest
+            size_hint: 1,.1
+            pos_hint: {'center_x': .5, 'top': 1}
+
+            MDTextField:
+                id: menu_
+                pos_hint: {'x': .05, 'center_y': .4}
+                size_hint_x: None
+                width: "200dp"
+                hint_text: "Select a Contest"
+                on_focus: if self.focus: root.start_search()
+
+
+        MDLabel:
+            id: header
+            text: "DockHand"
+            adaptive_height: True
+
+        ScrollView:
+            id: scroll
+
+            MDList:
+                id: list

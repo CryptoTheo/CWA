@@ -1,0 +1,142 @@
+<RidersAdmin>
+    padding: '6dp'
+    height: '600dp'
+    padding: '6dp'
+
+    MDRelativeLayout:
+
+        MDLabel:
+            text: 'Create a Rider'
+#            md_bg_color: 'blue'
+            font_style: 'H4'
+            halign: 'center'
+            adaptive_height: True
+            pos_hint: {'center_y': .95}
+
+        MDTextField:
+            id: first
+            hint_text: 'First Name'
+#                helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint:{'x': .06, 'center_y': .85}
+#                required: True
+
+        MDTextField:
+            id: last
+            hint_text: 'Last Name'
+#                helper_text: "This will disappear when you click off"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint:{'right': .94, 'center_y': .85}
+#                required: True
+
+#        MDTextField:
+#            id: email
+#            hint_text: 'Email'
+##                helper_text: "This will disappear when you click off"
+#            helper_text_mode: "on_focus"
+#            size_hint: None, None
+#            width: root.width/1.18
+#            pos_hint:{'center_x': .5, 'center_y': .68}
+#            validator: 'email'
+
+        MDTextField:
+            id: stance
+            hint_text: 'Stance'
+            helper_text: "Regular or Goofy"
+            helper_text_mode: "on_focus"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint:{'right': .94, 'center_y': .76}
+#                required: True
+
+        MDRoundFlatIconButton:
+            id: DOB
+#                md_bg_color: app.theme_cls.primary_color
+            text: "Date of Birth"
+            icon: "calendar"
+            size_hint: None, None
+            width: root.width/2.6
+            pos_hint: {'x': .06, 'center_y': .76}
+            elevation: 0
+            on_release: root.show_date_picker()
+
+#        MDTextField:
+#            id: image_link
+#            hint_text: 'Image URL:'
+##                helper_text: "This will disappear when you click off"
+#            helper_text_mode: "on_focus"
+#            size_hint: None, None
+#            width: root.width/1.18
+#            pos_hint:{'center_x': .5, 'center_y': .59}
+#            on_text_validate: root.show_image()
+
+
+        AsyncImage:
+            id: profile_image
+            size_hint_max: '150dp', '150dp'
+            adaptive_size: True
+            pos_hint: {'x': .06, 'top': .5}
+            source: 'assets/images/default_profile.png'
+
+        MDCard:
+            id: access
+            size_hint: None, None
+            size: '150dp', '150dp'
+            pos_hint: {'x': .5, 'top': .5}
+            orientation: 'vertical'
+            spacing: '6dp'
+
+            MDRelativeLayout:
+                MDLabel:
+                    text: 'Access:'
+                    pos_hint: {'x': 0, 'center_y': 1}
+
+                MDCheckbox:
+                    id: athlete
+                    size_hint: None, None
+                    size: dp(48), dp(48)
+                    pos_hint: {'x': -.1, 'center_y': .75}
+                    active: True
+
+                MDLabel
+                    text: 'Rider'
+                    pos_hint: {'x': .2, 'center_y': .75}
+
+                MDCheckbox:
+                    id: judge
+                    size_hint: None, None
+                    size: dp(48), dp(48)
+                    pos_hint: {'x': -.1, 'center_y': .5}
+
+                MDLabel
+                    text: 'Judge'
+                    pos_hint: {'x': .2, 'center_y': .5}
+
+                MDCheckbox:
+                    id: admin
+                    size_hint: None, None
+                    size: dp(48), dp(48)
+                    pos_hint: {'x': -.1, 'center_y': .25}
+
+                MDLabel
+                    text: 'Admin'
+                    pos_hint: {'x': .2, 'center_y': .25}
+
+        MDRoundFlatIconButton:
+            text: 'Submit'
+            icon: 'account-plus'
+            pos_hint: {'center_x': .8, 'top': .25}
+            elevation: 0
+            on_release:
+                root.add_rider()
+
+
+
+
+
+
+

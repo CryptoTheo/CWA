@@ -1,0 +1,34 @@
+<AboutUsScreen>
+    name: 'about us'
+#    md_bg_color: app.theme_cls.bg_light
+    size: root.width, root.height
+
+    MDBoxLayout:
+        orientation:'vertical'
+
+        MDTopAppBar:
+            title: root.page_name
+            #TODO switch transition direction
+            left_action_items:[['chevron-left', lambda x:root.controller.on_chevron_back()]]
+            right_action_items:
+                [
+                ['magnify', lambda x:root.controller.search_button()],
+                ['account', lambda x:root.controller.user_icon()],
+                ]
+
+
+        MDLabel:
+            text: 'what about us?'
+            halign: 'center'
+            font_style: 'H3'
+
+#            MDLabel
+#                text: '
+#                style: 'caption'
+#                halign: 'center'
+#                valign: 'top'
+#                font_style: 'H4'
+
+
+
+

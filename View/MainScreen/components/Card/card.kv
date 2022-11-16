@@ -1,0 +1,29 @@
+<NavCard>
+    spacing: 18
+    elevation: dp(2)
+    radius: '12dp'
+
+    MDSmartTile:
+        orientation: 'horizontal'
+        id: tile
+        radius: '12dp'
+        box_radius: 0, 0, 24, 24
+        box_color: 0, 0, 0, .5
+        opacity: 1
+        source: root.image
+        size: root.size
+        on_release:
+            app.manager_screens.transition.direction = 'left'
+            app.manager_screens.current = root.screen
+
+        MDLabel:
+            text: root.label
+            bold: True
+            font_style: "H6"
+            opposite_colors: True
+
+
+
+
+
+
