@@ -11,7 +11,6 @@ from database import Rider, Contest
 class SelectContest(FloatLayout):
     pass
 
-
 class RegisterRiders(MDRelativeLayout, MDTabsBase):
     header_text = StringProperty()
 

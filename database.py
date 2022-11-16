@@ -1,6 +1,11 @@
-from datetime import datetime
+import uuid
 
 import mongoengine as db
+from datetime import datetime
+from random import random
+import itertools
+import pymongo
+from mongoengine import connect
 
 
 class ScoreCards(db.Document):
@@ -38,7 +43,6 @@ class Contest(db.Document):
     image_link = db.StringField()
     uid = db.ObjectIdField()
     # id = db.UUIDField(default=uuid.uuid1())
-
 
 class Division(db.DynamicDocument):
     contest = db.ReferenceField(Contest)

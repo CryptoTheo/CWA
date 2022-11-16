@@ -1,9 +1,12 @@
+
 from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
+from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.pickers import MDDatePicker, MDTimePicker
 from kivymd.uix.snackbar import Snackbar
+from kivymd.uix.tab import MDTabsBase
 
-from database import Contest
+from database import Rider, Contest
 
 
 class ContestsAdmin(MDCard):
@@ -52,6 +55,7 @@ class ContestsAdmin(MDCard):
 
     def on_cancel(self, instance, value):
         '''Events called when the "CANCEL" dialog box button is clicked.'''
+
 
     def show_image(self):
         url = self.ids.image_link.text

@@ -2,6 +2,7 @@ from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.tab import MDTabsBase
 
+from View.AdminScreen.components.Register.register_riders import SelectContest
 from View.AdminScreen.components.tools.components import ListItemWithCheckbox
 from database import Contest, Rider
 

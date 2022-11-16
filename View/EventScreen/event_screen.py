@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+
 from kivy.properties import StringProperty, ListProperty
 from kivymd.uix.datatables import MDDataTable
 from kivymd.uix.floatlayout import MDFloatLayout
@@ -24,7 +25,6 @@ class ResultList(MDList):
 
 class Tab(MDFloatLayout, MDTabsBase):
     pass
-
 
 class ResultsTable(MDDataTable):
     column = ListProperty()

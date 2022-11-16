@@ -2,8 +2,11 @@ from kivy.animation import Animation
 from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
 from kivymd.uix.chip import MDChip
+from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.snackbar import Snackbar
+from kivymd.uix.tab import MDTabsBase
+from mongoengine import connect
 
 from database import Rider
 
@@ -34,6 +37,7 @@ class RidersAdmin(MDCard):
 
     def on_cancel(self, instance, value):
         '''Events called when the "CANCEL" dialog box button is clicked.'''
+
 
     def show_image(self):
         url = self.ids.image_link.text

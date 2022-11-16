@@ -1,5 +1,7 @@
+from kivy.metrics import dp
 from kivy.properties import StringProperty
 from kivymd.uix.card import MDCard
+
 
 
 class NavCard(MDCard):

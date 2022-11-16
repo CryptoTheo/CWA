@@ -1,5 +1,10 @@
 from kivymd.uix.tab import MDTabs
 
+from View.AdminScreen.components.Create.Contests.create_contest import ContestsAdmin
+from View.AdminScreen.components.Create.create import CreateTab
+from View.AdminScreen.components.Judge.judge import JudgeTab
+from View.AdminScreen.components.Manage.manage import ManageTab
+from View.AdminScreen.components.Register.register_riders import RegisterRiders
 from View.base_screen import BaseScreenView
 
 

@@ -1,10 +1,10 @@
 import importlib
 
 import View.AdminScreen.admin_screen
-
 # We have to manually reload the view module in order to apply the
 # changes made to the code on a subsequent hot reload.
 # If you no longer need a hot reload, you can delete this instruction.
+from View.AdminScreen.components.Judge.judge import ScoreSheet
 
 importlib.reload(View.AdminScreen.admin_screen)
 

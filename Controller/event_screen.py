@@ -33,3 +33,4 @@ class EventScreenController:
     def on_chevron_back(self):
         self.view.manager_screens.transition.direction = 'right'
         self.view.manager_screens.current = 'event list screen'
+

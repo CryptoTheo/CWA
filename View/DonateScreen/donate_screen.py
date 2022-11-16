@@ -1,4 +1,5 @@
 from View.MainScreen.components.Card.card import NavCard  # NOQA
+from View.MainScreen.main_screen import MainScreenView
 from View.base_screen import BaseScreenView
 
 

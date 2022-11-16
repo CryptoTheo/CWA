@@ -1,3 +1,5 @@
+from kivy.uix.boxlayout import BoxLayout
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.card import MDCard
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.tab import MDTabsBase
@@ -9,7 +11,6 @@ from database import Contest, Rider
 
 class MyCheckBar(MDCard):
     pass
-
 
 class ScoreSheet(MDCard):
 

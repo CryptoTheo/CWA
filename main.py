@@ -7,30 +7,8 @@ https://kivymd.readthedocs.io/en/latest/api/kivymd/tools/patterns/create_project
 To run the application in hot boot mode, execute the command in the console:
 DEBUG=1 python main.py
 """
-import certifi
-import dns.resolver
-import mongoengine as mongo
+from kivy.base import stopTouchApp
 from kivy.uix.anchorlayout import AnchorLayout
-# """
-# The entry point to the application.
-#
-# The application uses the MVC template. Adhering to the principles of clean
-# architecture means ensuring that your application is easy to test, maintain,
-# and modernize.
-#
-# You can read more about this template at the links below:
-#
-# https://github.com/HeaTTheatR/LoginAppMVC
-# https://en.wikipedia.org/wiki/Model–view–controller
-# """
-# #
-from kivymd.app import MDApp
-from kivymd.uix.card import MDCard
-from kivymd.uix.label import MDLabel
-from kivymd.uix.screenmanager import MDScreenManager
-
-from View.screens import screens
-
 # import importlib
 # import os
 #
@@ -117,8 +95,35 @@ from View.screens import screens
 #
 #
 # TheCWA().run()
+
 # After you finish the project, remove the above code and uncomment the below
 # code to test the application normally without hot reloading.
+
+# """
+# The entry point to the application.
+#
+# The application uses the MVC template. Adhering to the principles of clean
+# architecture means ensuring that your application is easy to test, maintain,
+# and modernize.
+#
+# You can read more about this template at the links below:
+#
+# https://github.com/HeaTTheatR/LoginAppMVC
+# https://en.wikipedia.org/wiki/Model–view–controller
+# """
+# #
+from kivymd.app import MDApp
+from kivymd.uix.button import MDRoundFlatButton
+from kivymd.uix.card import MDCard
+from kivymd.uix.label import MDLabel
+from kivymd.uix.screenmanager import MDScreenManager
+
+from View.screens import screens
+
+import certifi
+import mongoengine as mongo
+
+import dns.resolver
 
 # TODO: You may know an easier way to get the size of a computer display.
 # Change the values of the application window size as you need.
@@ -159,8 +164,7 @@ except Exception as e:
                 halign='center'
             )
             # error = MDLabel(
-            #     text=e
-            # )
+            #     text=Exception)
 
             self.card.add_widget(label)
             # self.card.add_widget(error)

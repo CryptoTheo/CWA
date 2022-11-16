@@ -6,7 +6,6 @@ from View.base_screen import BaseScreenView
 
 class ParkScreenView(BaseScreenView):
     page_name = 'Parks'
-
     def model_is_changed(self) -> None:
         """
         Called whenever any change has occurred in the data model.

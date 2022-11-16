@@ -1,5 +1,6 @@
-from kivy.properties import StringProperty, BooleanProperty, ColorProperty, NumericProperty
+from kivy.properties import ObjectProperty, StringProperty, BooleanProperty, ColorProperty, NumericProperty
 from kivymd.uix.card import MDCard
+from kivymd.uix.slider import MDSlider
 
 
 def get_display(label, value):
@@ -33,3 +34,4 @@ class ScoreSlider(MDCard):
             self.ids.score_value.text = display
 
         return self.slider_value
+

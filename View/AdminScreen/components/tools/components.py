@@ -22,6 +22,7 @@ class ListItemWithCheckbox(MDCard):
     bib_color_text = StringProperty(defaultvalue='Pick a Color')
     bib_color = StringProperty()
 
+
     def on_checkbox_active(self, type):
         if type == 'on water':
             status = self.ids.check.active
@@ -86,3 +87,4 @@ class ListItemWithCheckbox(MDCard):
         print('callback')
         print(self)
         print(bib_color)
+

@@ -1,4 +1,5 @@
 # from View.EventScreen.EventListScreen.components import EventCard  # NOQA
+import mongoengine
 
 from View.EventScreen.EventListScreen.components.EventCard.card import EventCard
 from View.base_screen import BaseScreenView

@@ -1,3 +1,4 @@
+
 # Of course, "very flexible Python" allows you to do without an abstract
 # superclass at all or use the clever exception `NotImplementedError`. In my
 # opinion, this can negatively affect the architecture of the application.

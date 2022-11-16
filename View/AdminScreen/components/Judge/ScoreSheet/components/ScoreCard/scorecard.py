@@ -1,7 +1,9 @@
 from kivy.properties import ObjectProperty, StringProperty, ColorProperty, NumericProperty
+from kivy.uix.popup import Popup
 from kivymd.uix.card import MDCard
 from kivymd.uix.snackbar import Snackbar
 
+from View.AdminScreen.components.Judge.ScoreSheet.components.ScoreSlider.scoreslider import ScoreSlider
 from database import ScoreCards, Rider
 
 
