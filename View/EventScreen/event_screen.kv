@@ -4,9 +4,6 @@
     size_hint: None, None
     adaptive_height: True
 
-<ResultsTable>
-    column_data:[]
-    row_data:[]
 
 <EventScreenView>
     name: 'event screen'
@@ -39,9 +36,10 @@
                 height: self.minimum_height
 
                 MDCard:
+                    id: top_card
                     size_hint: 1, None
                     md_bg_color: app.theme_cls.bg_normal
-                    height: '300dp'
+                    height: '400dp'
                     orientation: 'vertical'
                     padding: '12dp'
                     elevation: 3
@@ -51,7 +49,6 @@
                         text: 'Currently Riding:'
                         font_style: 'H5'
                         adaptive_height: True
-
 
                     MDFloatLayout:
 
@@ -72,16 +69,14 @@
                             on_release: root.ids.on_water.load_next(mode='next')
 
                     MDBoxLayout:
+                        id: info_bar
                         md_bg_color: app.theme_cls.bg_darkest
                         padding: '4dp'
                         cols: 2
-                        spacing: '12dp'
+                        orientation: 'vertical'
 
                         MDCard:
-                            size_hint: .65, 1
-                            orientation: "vertical"
-                            padding: '6dp'
-                            md_bg_color:
+                            size_hint: 1, None
 
                             MDLabel:
                                 id: rider_name
@@ -90,56 +85,27 @@
                                 text: root.rider_name
                                 font_style: 'Overline'
                                 font_size: '16dp'
-                                pos_hint: {'x': 0.05, 'center_y': .9}
+#                                pos_hint: {'x': 0.05, 'center_y': .9}
                             MDLabel:
                                 text: root.average_division
                                 font_style: 'Caption'
                                 bold: False
                                 italic: True
-                                pos_hint: {'x': 0.05, 'center_y': .5}
+#                                pos_hint: {'x': 0.05, 'center_y': .5}
+                            MDLabel:
+                                text: root.trick_count
+                                font_style: 'Caption'
+                                bold: False
+                                italic: True
+#                                pos_hint: {'x': 0.05, 'center_y': .5}
                             MDLabel:
                                 text: root.average_score
-                                pos_hint: {'x': .05, 'center_y': .2}
-                        MDGridLayout:
-                            cols: 3
-                            spacing: '6do'
-
-                            MyTableLabel:
-                                text: root.latest_section
-
-                            MyTableLabel:
-                                text: 'AVG'
-
-                            MyTableLabel:
-                                text: 'NEW'
-
-                            MyTableLabel:
-                                text: 'Execution:'
-
-                            MyTableLabel:
-                                text: root.average_execution
-
-                            MyTableLabel:
-                                text: root.latest_execution
-
-                            MyTableLabel:
-                                text: 'Creativity'
-
-                            MyTableLabel:
-                                text: root.average_creativity
-
-                            MyTableLabel:
-                                text: root.latest_creativity
-
-                            MyTableLabel:
-                                text: 'Difficulty'
-
-                            MyTableLabel:
-                                text: root.average_difficulty
-
-                            MyTableLabel:
-                                text: root.latest_difficulty
-
+                                font_style: 'H5'
+                                font_size: '16dp'
+                                bold: True
+#                                pos_hint: {'x': .05, 'center_y': .2}
+                        MDCard:
+                            id: results_table
 
 
 

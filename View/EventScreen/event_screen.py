@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+from kivy.metrics import dp
 
 from kivy.properties import StringProperty, ListProperty
 from kivymd.uix.datatables import MDDataTable
@@ -26,10 +27,14 @@ class ResultList(MDList):
 class Tab(MDFloatLayout, MDTabsBase):
     pass
 
-class ResultsTable(MDDataTable):
-    column = ListProperty()
-    row = ListProperty()
 
+# class ResultsTable(MDDataTable):
+# results_row = ListProperty()
+# results_col = ListProperty()
+#
+# def on_enter(self):
+#     self.column_data = self.results_col
+#     self.row_data = self.results_row
 
 class EventScreenView(BaseScreenView):
     page_name = StringProperty()
@@ -49,6 +54,9 @@ class EventScreenView(BaseScreenView):
     latest_execution = StringProperty()
     latest_difficulty = StringProperty()
     latest_section = StringProperty()
+    info_row = ListProperty()
+    info_col = ListProperty()
+    trick_count = StringProperty()
 
     def on_enter(self, *args):
         contest = Contest.objects(id=self.app.active_contest).first()
@@ -62,16 +70,21 @@ class EventScreenView(BaseScreenView):
             self.contest_id = self.app.active_contest
             self.page_name = contest.event_name
             self.generate_overall()
-            self.generate_carasoul()
+            rider_id = self.generate_carasoul()
+            self.current_slide(rider_id)
 
     def generate_carasoul(self):
         rider = Rider.objects(on_water=True).to_json()
         rider = pd.DataFrame(pd.json_normalize(json.loads(rider)))
 
+        riders = []
         for rider, score in rider.iterrows():
             self.ids.on_water.add_widget(RiderThumb(
                 rider_id=score['_id.$oid'],
             ))
+            riders.append(score['_id.$oid'])
+
+        return riders[0]
 
     def current_slide(self, rider_id):
         print(rider_id)
@@ -93,25 +106,55 @@ class EventScreenView(BaseScreenView):
         if div >= 90:
             div_label = 'Pro'
 
+        # Rider information
         self.rider_name = rider_name
         self.average_division = div_label
-        self.average_creativity = str(averages["creativity"][0].round(1))
-        self.average_execution = str(averages["execution"][0].round(1))
-        self.average_difficulty = str(averages['difficulty'][0].round(1))
-        self.average_score = str(averages['average'][0].round(1))
+        self.average_score = f'Overall: {str(averages["average"][0].round(1))}'
 
+        # getts latest trick
         latest_trick = cards.iloc[-1:]
-        self.latest_creativity = str(latest_trick['creativity'].iloc[0].round(1))
-        self.latest_division = str(latest_trick['average'].iloc[0].round(1))
-        self.latest_execution = str(latest_trick['execution'].iloc[0].round(1))
-        self.latest_difficulty = str(latest_trick['difficulty'].iloc[0].round(1))
-        self.latest_section = str(latest_trick['section'].iloc[0].upper())
-        print(self.latest_section)
-        percent = averages['landed'].iloc[0]
-        percent = percent * 10
-        self.percent_landed = f"Landed: {str(percent)}%"
+        latest = latest_trick.drop(['date.$date', 'contest', 'rider_id', '_id.$oid', 'landed'], axis=1)
 
-        print('end')
+        # Gets data for table
+        stats = cards.describe()
+        stats = stats.drop(['date.$date'], axis=1)
+        self.trick_count = f'Tricks Scored: {str(stats["division"][0])}'
+        stats = stats.drop(['std', '25%', '75%', 'count'], axis=0)
+
+        # Adds latest trick to datatable
+        df2 = [stats, latest]
+        table = pd.concat(df2)
+        table = table.rename(index={2: 'Newest'})
+        table = table.rename(index={'mean': 'Average'})
+        table = table.rename(index={'min': 'Lowest'})
+        table = table.rename(index={'max': 'Highest'})
+
+        table = table.drop(['display_name', 'section', 'division'], axis=1)
+        table = table.round(1)
+
+        # TODO add datatable
+
+        if self.ids.results_table.children:
+            self.ids.results_table.clear_widgets()
+
+        self.ids.results_table.add_widget(MDDataTable(
+            column_data=[
+                ("Stats:", dp(20)),
+                ("Execution", dp(20)),
+                ("Creativity", dp(20)),
+                ("Difficulty", dp(20)),
+                ("Overall", dp(20)),
+            ],
+            row_data=list(table.itertuples(index=True, name=None)),
+            pos_hint={"top": 1, "x": 0}
+        ))
+
+        # print(self.latest_section)
+        # percent = averages['landed'].iloc[0]
+        # percent = percent * 10
+        # self.percent_landed = f"Landed: {str(percent)}%"
+
+        # print('end')
         # TODO the above is working!!! keep going!!! you got this!
 
     def generate_kickers(self):

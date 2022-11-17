@@ -8,6 +8,7 @@ To run the application in hot boot mode, execute the command in the console:
 DEBUG=1 python main.py
 """
 from kivy.base import stopTouchApp
+from kivy.lang import Builder
 from kivy.uix.anchorlayout import AnchorLayout
 # import importlib
 # import os
@@ -116,6 +117,7 @@ from kivymd.app import MDApp
 from kivymd.uix.button import MDRoundFlatButton
 from kivymd.uix.card import MDCard
 from kivymd.uix.label import MDLabel
+from kivymd.uix.screen import MDScreen
 from kivymd.uix.screenmanager import MDScreenManager
 
 from View.screens import screens
@@ -131,51 +133,32 @@ import dns.resolver
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = ['1.1.1.1']
 
-try:
-    host_name = 'mongodb+srv://events.xfmhxnj.mongodb.net'
-    data = 'events'
-    username = 'admin'
-    password = 'nEXjgFKzF9yC2Z59'
-    mongo.connect(db=data,
-                  username=username,
-                  password=password,
-                  host=host_name,
-                  tlsCAFile=certifi.where())
-    connection = True
-except Exception as e:
-    print(e)
-    connection = False
 
+def db_connect():
+    try:
+        host_name = 'mongodb+srv://events.xfmhxnj.mongodb.net'
+        data = 'events'
+        username = 'admin'
+        password = 'nEXjgFKzF9yC2Z59'
+        mongo.connect(db=data,
+                      username=username,
+                      password=password,
+                      host=host_name,
+                      tlsCAFile=certifi.where())
 
-    class Example(MDApp):
+        connection = True
 
-        def build(self):
-            self.theme_cls.theme_style = "Dark"
-            self.theme_cls.primary_palette = "Red"
+    except Exception as e:
+        print(e)
+        connection = False
 
-            layout = AnchorLayout()
-            self.card = MDCard(
-                size_hint=(0.7, 0.6),
-                md_bg_color=self.theme_cls.bg_dark,
-                orientation='vertical'
-            )
-            label = MDLabel(
-                text='Please connect to the internet and restart application',
-                halign='center'
-            )
-            # error = MDLabel(
-            #     text=Exception)
-
-            self.card.add_widget(label)
-            # self.card.add_widget(error)
-            layout.add_widget(self.card)
-
-            return layout
+    return connection
 
 
 class TheCWA(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.connection = False
         self.load_all_kv_files(self.directory)
         # This is the screen manager that will contain all the screens of your
         # application.
@@ -183,7 +166,10 @@ class TheCWA(MDApp):
 
     def build(self) -> MDScreenManager:
         self.generate_application_screens()
-        return self.manager_screens
+        self.connection = db_connect()
+        if self.connection:
+            return self.manager_screens
+
 
     def generate_application_screens(self) -> None:
         """
@@ -205,7 +191,4 @@ class TheCWA(MDApp):
 
 
 if __name__ == '__main__':
-    if connection == True:
-        TheCWA().run()
-    else:
-        Example().run()
+    TheCWA().run()
