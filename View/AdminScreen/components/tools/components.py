@@ -1,3 +1,4 @@
+from kivy.metrics import dp
 from kivy.properties import StringProperty, BooleanProperty
 from kivymd.uix.card import MDCard
 from kivymd.uix.list import IRightBodyTouch
@@ -55,36 +56,35 @@ class ListItemWithCheckbox(MDCard):
         return
 
     def select_bib_color(self):
-        bib_colors = ['red', 'grey', 'blue', 'yellow', ]
+        bib_colors = ['Red', 'Black', 'Blue', 'Green', 'Yellow', 'None']
         self.menu_list = [
             {
                 "viewclass": "OneLineListItem",
                 "text": color,
-                "on_release": lambda x=color: self.set_bib_color(x)
+                "on_release": lambda x=color.lower(): self.set_bib_color(x)
             } for color in bib_colors
         ]
         self.menu = MDDropdownMenu(
             caller=self.ids.colour,
             items=self.menu_list,
             width_mult=2,
-            ver_growth='down'
+            ver_growth='down',
+            max_height='120dp'
+
         )
         self.menu.open()
 
     def set_bib_color(self, bib_color):
-        self.ids.colour.md_bg_color = bib_color
         rider = Rider.objects(id=self.rider_id).get()
-        rider.bib_color = bib_color
-        print(rider.bib_color)
-        rider.save()
-
-        if bib_color == 'grey':
-            bib_color = 'black'
-
         self.ids.color_label.text = bib_color.capitalize()
+
+        if bib_color == 'black':
+            bib_color = 'grey'
+        if bib_color == 'none':
+            bib_color = 'white'
+
+        rider.bib_color = bib_color
+        rider.save()
+        self.bib_color = bib_color
+        self.ids.colour.md_bg_color = bib_color
         self.menu.dismiss()
-
-        print('callback')
-        print(self)
-        print(bib_color)
-
