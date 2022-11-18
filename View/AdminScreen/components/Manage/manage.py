@@ -21,7 +21,8 @@ class ManageTab(MDTabsBase, MDFloatLayout):
             caller=self.ids.menu_,
             items=self.menu_list,
             width_mult=4,
-            ver_growth='down'
+            ver_growth='down',
+            max_height='120dp'
         )
         self.menu.open()
         print('menu')

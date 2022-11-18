@@ -51,6 +51,7 @@
                         adaptive_height: True
 
                     MDFloatLayout:
+                        size_hint: 1, .5
 
                         MDCarousel:
                             id: on_water
@@ -78,6 +79,7 @@
                         MDCard:
                             size_hint: 1, None
 
+
                             MDLabel:
                                 id: rider_name
                                 text: root.rider_name
@@ -85,24 +87,29 @@
                                 text: root.rider_name
                                 font_style: 'Overline'
                                 font_size: '16dp'
+                                halign: 'center'
 #                                pos_hint: {'x': 0.05, 'center_y': .9}
                             MDLabel:
                                 text: root.average_division
                                 font_style: 'Caption'
                                 bold: False
                                 italic: True
+                                halign: 'center'
+
 #                                pos_hint: {'x': 0.05, 'center_y': .5}
                             MDLabel:
                                 text: root.trick_count
                                 font_style: 'Caption'
                                 bold: False
                                 italic: True
+                                halign: 'center'
 #                                pos_hint: {'x': 0.05, 'center_y': .5}
                             MDLabel:
                                 text: root.average_score
                                 font_style: 'H5'
                                 font_size: '16dp'
                                 bold: True
+                                halign: 'center'
 #                                pos_hint: {'x': .05, 'center_y': .2}
                         MDCard:
                             id: results_table

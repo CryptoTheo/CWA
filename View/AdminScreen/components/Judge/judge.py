@@ -60,27 +60,4 @@ class ScoreSheet(MDCard):
 
 
 class JudgeTab(MDTabsBase, MDFloatLayout):
-    # def __init__(self, **kwargs):
-    #     super(JudgeTab, self).__init__(**kwargs)
-    #
-    #     box = MDBoxLayout()
-    #     if not self.children:
-    #         for rider in riders:
-    #             rid = str(rider.id)
-    #             print(rid)
-    #             btn = RidersThumb(
-    #                 id=str(rider.id),
-    #                 rider_name=f'{rider.first_name[0]}. {rider.last_name}',
-    #                 rider_id=str(rider.id),
-    #                 on_press=lambda x=rid: self.open_scorecard(rid))
-    #
-    #             box.add_widget(btn)
-    #
-    #
-    #
-    #         self.add_widget(box)
-    #
-    # def open_scorecard(self, x):
-    #     rider = Rider.objects(id=x).get()
-    #     print(rider.first_name)
     pass

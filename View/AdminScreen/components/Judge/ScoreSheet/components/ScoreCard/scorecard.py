@@ -26,7 +26,7 @@ class ScoreCard(MDCard):
         if self.ids.kicker.active:
             section = 'Kicker'
         elif self.ids.rail.active:
-            section = 'rail'
+            section = 'Rail'
         elif self.ids.air.active:
             section = 'Air Trick'
         else:
@@ -54,7 +54,7 @@ class ScoreCard(MDCard):
         if self.ids.kicker.active:
             section = 'Kicker'
         elif self.ids.rail.active:
-            section = 'rail'
+            section = 'Rail'
         elif self.ids.air.active:
             section = 'Air Trick'
         else:
