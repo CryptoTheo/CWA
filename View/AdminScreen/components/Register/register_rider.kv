@@ -19,23 +19,29 @@
                     hint_text: "Select a Contest"
                     on_focus: if self.focus: root.start_search()
 
-            MDRelativeLayout:
-                MyCheck:
-                    id: all
-                    active: True
-                    pos_hint: {'center_x': .2, 'center_y': .66}
-                MDLabel:
-                    text: 'All Riders'
-                    pos_hint: {'x': .3, 'center_y': .66}
-                MyCheck:
-                    id: registered
-                    pos_hint: {'center_x': .2, 'center_y': .33}
-                MDLabel:
-                    text: 'Registered'
-                    pos_hint: {'x': .3, 'center_y': .33}
+            MDRoundFlatIconButton:
+                text: 'Refresh'
+                icon: 'refresh'
+#                pos_hint: {'right': .95, 'y': .03}
+                on_release: root.callback(app.active_contest)
+
+#            MDRelativeLayout:
+#                MyCheck:
+#                    id: all
+#                    active: True
+#                    pos_hint: {'center_x': .2, 'center_y': .66}
+#                MDLabel:
+#                    text: 'All Riders'
+#                    pos_hint: {'x': .3, 'center_y': .66}
+#                MyCheck:
+#                    id: registered
+#                    pos_hint: {'center_x': .2, 'center_y': .33}
+#                MDLabel:
+#                    text: 'Registered'
+#                    pos_hint: {'x': .3, 'center_y': .33}
         MDLabel:
             id: header
-            text: "Register Riders"
+            text: "Register Riders::"
             adaptive_height: True
 
         ScrollView:

@@ -1,3 +1,4 @@
+from kivy.properties import ObjectProperty
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.tab import MDTabsBase
@@ -8,6 +9,8 @@ from database import Contest, Rider
 
 
 class ManageTab(MDTabsBase, MDFloatLayout):
+    contest = ObjectProperty()
+
     def start_search(self):
         for contest in Contest.objects():
             self.menu_list = [
@@ -28,30 +31,31 @@ class ManageTab(MDTabsBase, MDFloatLayout):
         print('menu')
 
     def callback(self, contest):
+
         self.ids.menu_.text = contest.event_name
         self.ids.menu_.hint_text = 'Editing:'
+        self.contest = contest
         self.menu.dismiss()
         self.update_list(contest)
 
     def update_list(self, contest):
+        if contest is not None:
+            riders = Rider.objects()
+            if self.ids.list.children:
+                self.ids.list.clear_widgets()
 
-        riders = Rider.objects()
-        if self.ids.list.children:
-            self.ids.list.clear_widgets()
-        contest = Contest.objects(live=True).first()
-
-        riders = Rider.objects(registered_contest=str(contest.id))
-        if not riders:
-            return
-        else:
-            for rider in riders:
-                self.ids.list.add_widget(
-                    ListItemWithCheckbox(
-                        contest_id=str(contest.id),
-                        rider_name=f'{rider.first_name} {rider.last_name}',
-                        rider_id=str(rider.id),
-                        active_check=rider.on_water,
-                        bib_color=rider.bib_color,
-                        type='on water'
+            riders = Rider.objects(registered_contest=str(contest.id))
+            if not riders:
+                return
+            else:
+                for rider in riders:
+                    self.ids.list.add_widget(
+                        ListItemWithCheckbox(
+                            contest_id=str(contest.id),
+                            rider_name=f'{rider.first_name} {rider.last_name}',
+                            rider_id=str(rider.id),
+                            active_check=rider.on_water,
+                            bib_color=rider.bib_color,
+                            type='on water'
+                        )
                     )
-                )

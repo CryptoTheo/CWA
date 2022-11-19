@@ -57,7 +57,7 @@
                             id: on_water
                             loop: True
                             pos_hint: {'center_x': .5, 'center_y': .5}
-                            on_current_slide: root.current_slide(self.current_slide.rider_id)
+                            on_current_slide: root.current_rider(self.current_slide.rider_id)
 
                         MDIconButton:
                             icon: 'chevron-double-left'
@@ -69,53 +69,143 @@
                             pos_hint: {'center_x': .9, 'center_y': .5}
                             on_release: root.ids.on_water.load_next(mode='next')
 
-                    MDBoxLayout:
+                    MDGridLayout:
                         id: info_bar
                         md_bg_color: app.theme_cls.bg_darkest
                         padding: '4dp'
-                        cols: 2
-                        orientation: 'vertical'
+                        spacing: '4dp'
+                        cols: 1
 
-                        MDCard:
-                            size_hint: 1, None
+                        MDGridLayout:
+                            rows: 1
+                            md_bg_color: app.theme_cls.bg_dark
 
+
+                            MDRelativeLayout:
+
+                                MDLabel:
+                                    id: rider_name
+                                    text: root.current_rider_name
+                                    font_style: 'Overline'
+                                    font_size: '12dp'
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y': .6}
+
+                                MDLabel:
+                                    text: root.current_rider_division
+                                    font_style: 'Caption'
+                                    font_size: '10dp'
+                                    bold: False
+                                    italic: True
+                                    halign: 'center'
+                                    pos_hint: {'center_x': .5, 'center_y': .4}
 
                             MDLabel:
-                                id: rider_name
-                                text: root.rider_name
-                                size_hint: 1, None
-                                text: root.rider_name
-                                font_style: 'Overline'
-                                font_size: '16dp'
-                                halign: 'center'
-#                                pos_hint: {'x': 0.05, 'center_y': .9}
-                            MDLabel:
-                                text: root.average_division
+                                text: root.current_trick_count
                                 font_style: 'Caption'
+                                font_size: '12dp'
                                 bold: False
                                 italic: True
                                 halign: 'center'
-
-#                                pos_hint: {'x': 0.05, 'center_y': .5}
+                                valign: 'center'
+                                pos_hint: {'center_y': .5}
                             MDLabel:
-                                text: root.trick_count
-                                font_style: 'Caption'
-                                bold: False
-                                italic: True
-                                halign: 'center'
-#                                pos_hint: {'x': 0.05, 'center_y': .5}
-                            MDLabel:
-                                text: root.average_score
+                                text: root.current_overall
                                 font_style: 'H5'
-                                font_size: '16dp'
+                                font_size: '14dp'
                                 bold: True
                                 halign: 'center'
+                                valign: 'center'
+                                pos_hint: {'center_y': .5}
+
 #                                pos_hint: {'x': .05, 'center_y': .2}
+
                         MDCard:
-                            id: results_table
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: 'Overall Scores:'
+                                halign: 'center'
+                                bold: True
+
+
+                            MDGridLayout:
+                                id: Overall
+                                size_hint: 1, None
+                                rows:1
+                                spacing: '4dp'
+
+                                MDLabel:
+                                    text: root.current_overall
+                                    font_style: 'H5'
+                                    font_size: '14dp'
+                                    halign: 'center'
+
+
+                                MDLabel:
+                                    text: root.current_kicker
+                                    font_style: 'H5'
+                                    font_size: '14dp'
+                                    halign: 'center'
+
+                                MDLabel:
+                                    text: root.current_rail
+                                    font_style: 'H5'
+                                    font_size: '14dp'
+                                    halign: 'center'
+
+                                MDLabel:
+                                    text: root.current_airtrick
+                                    font_style: 'H5'
+                                    font_size: '14dp'
+                                    halign: 'center'
+
+                        MDCard:
+                            orientation: 'vertical'
+                            adaptive_height: True
+
+                            MDLabel:
+                                text: root.recent_section
+                                halign: 'center'
+                                bold: True
+
+                            MDGridLayout:
+                                id: Overall
+                                size_hint: 1, None
+                                rows:1
+                                spacing: '4dp'
+
+                                MDLabel:
+                                    text: root.recent_overall
+                                    font_style: 'H5'
+                                    font_size: '12dp'
+                                    halign: 'center'
 
 
 
+                                MDLabel:
+                                    text: root.recent_execution
+                                    font_style: 'H5'
+                                    font_size: '12dp'
+                                    halign: 'center'
+
+                                MDLabel:
+                                    text: root.recent_creativity
+                                    font_style: 'H5'
+                                    font_size: '12dp'
+                                    halign: 'center'
+
+                                MDLabel:
+                                    text: root.recent_difficulty
+                                    font_style: 'H5'
+                                    font_size: '12dp'
+                                    halign: 'center'
+
+
+#
+#
+#
                 MDCard:
                     size_hint: 1, None
                     orientation: 'vertical'

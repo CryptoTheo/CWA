@@ -30,7 +30,7 @@ class ScoreCard(MDCard):
         elif self.ids.air.active:
             section = 'Air Trick'
         else:
-            Snackbar(text='ERROR: Select a Section!').open()
+            Snackbar(text='ERROR: Select a Section!', bg_color='red').open()
             return
 
         scorecard = ScoreCards()

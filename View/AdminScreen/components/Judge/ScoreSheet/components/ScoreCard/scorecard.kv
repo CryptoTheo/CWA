@@ -4,12 +4,12 @@
     pos_hint: {'center_x': .5, 'center_y': .5}
 
     MDBoxLayout:
-        size_hint: 1, .4
+        size_hint: 1, .2
         orientation: 'vertical'
 
         MDBoxLayout:
             orientation: 'vertical'
-            size_hint: 1, .2
+            size_hint: 1, .1
             MDLabel:
                 text: root.rider_name
                 font_style: 'Overline'
@@ -63,8 +63,7 @@
 
     MDBoxLayout:
         orientation: 'vertical'
-        size_hint: 1, None
-        height: '220dp'
+        size_hint: 1, 1
         pos_hint: {'center_x': .5,"center_y": .5}
 
         padding: '12dp'
@@ -97,7 +96,7 @@
 
     MDRelativeLayout:
         id: buttons
-        size_hint: 1, .2
+        size_hint: 1, .1
         md_bg_color: app.theme_cls.bg_dark
 
         MDRoundFlatIconButton:

@@ -33,6 +33,8 @@ class RegisterRiders(MDRelativeLayout, MDTabsBase):
         print('menu')
 
     def callback(self, contest):
+        if contest == '':
+            return
         self.ids.menu_.text = contest.event_name
         self.ids.menu_.hint_text = 'Editing:'
         self.menu.dismiss()
